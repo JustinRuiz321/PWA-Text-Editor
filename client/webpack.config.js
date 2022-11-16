@@ -22,6 +22,10 @@ module.exports = () => {
         title: 'J.A.T.E.',
         template: './index.html'
       }),
+      new InjectManifest({
+        template: './src-sw.js',
+        swDest: 'src-sw.js'
+      }),
       new WebpackPwaManifest ({
         name: "Just Another Text Editor",
         short_name: 'J.A.T.E.',
