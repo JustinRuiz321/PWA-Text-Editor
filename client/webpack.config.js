@@ -29,7 +29,7 @@ module.exports = () => {
         inject: true,
         fingerprints: false,
         background_color: '#B8B8B8',
-        theme_color: "B8B8B8",
+        theme_color: "#B8B8B8",
         start_url: "./",
         publicPath: "./",
         icons: [{
