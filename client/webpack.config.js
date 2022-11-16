@@ -39,10 +39,23 @@ module.exports = () => {
         }],
       }),
     ],
-
     module: {
       rules: [
-        
+        {
+          use: ['style-loader', 'css-loader'],
+          test: /\.css$/i,
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+              presets: ['@babel/preset-env'],
+            },
+          },
+        },
       ],
     },
   };
