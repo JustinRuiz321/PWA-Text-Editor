@@ -18,7 +18,26 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        title: 'J.A.T.E.',
+        template: './index.html'
+      }),
+      new WebpackPwaManifest ({
+        name: "Just Another Text Editor",
+        short_name: 'J.A.T.E.',
+        description: 'Taking notes with JS',
+        inject: true,
+        fingerprints: false,
+        background_color: '#B8B8B8',
+        theme_color: "B8B8B8",
+        start_url: "./",
+        publicPath: "./",
+        icons: [{
+          src: path.resolve('src/images/logo.png'),
+          sizes: [96,128,192],
+          destination: path.join('assets', 'icons')
+        }],
+      }),
     ],
 
     module: {
