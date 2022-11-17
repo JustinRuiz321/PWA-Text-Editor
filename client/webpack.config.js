@@ -17,22 +17,22 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'J.A.T.E'
+        title: 'J.A.T.E.'
       }),
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
         name: 'Just Another Text Editor',
-        short_name: 'J.A.T.E',
-        description: 'Takes notes with JavaScript syntax highlighting!',
-        background_color: '#225ca3',
-        theme_color: '#225ca3',
+        short_name: 'J.A.T.E.',
+        description: 'Notes with JS',
+        background_color: '#787878',
+        theme_color: '#787878',
         start_url: './',
         publicPath: './',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
-            sizes: [96, 128, 192, 256, 384, 512],
+            sizes: [96, 128, 192],
             destination: path.join('assets', 'icons'),
           },
         ],
