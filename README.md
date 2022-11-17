@@ -38,3 +38,10 @@ THEN I should have proper build scripts for a webpack application
 
 ## Video Demonstration
 [Untitled_ Nov 16, 2022 8_31 PM.webm](https://user-images.githubusercontent.com/107062112/202332299-54c3bab3-9072-4a47-87ac-3f5c1b77d099.webm)
+
+## Links
+https://pwa-jate-js-text-editor.herokuapp.com/
+https://github.com/JustinRuiz321/PWA-Text-Editor
+
+## Email
+ruiz.justin21@gmail.com
