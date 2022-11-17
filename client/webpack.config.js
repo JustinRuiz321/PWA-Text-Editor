@@ -3,9 +3,6 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
-// TODO: Add and configure workbox plugins for a service worker and manifest file.
-// TODO: Add CSS loaders and babel to webpack.
-
 module.exports = () => {
   return {
     mode: 'development',
@@ -19,35 +16,38 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'J.A.T.E.',
-        template: './index.html'
+        template: './index.html',
+        title: 'J.A.T.E'
+      }),
+      new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
+        name: 'Just Another Text Editor',
+        short_name: 'J.A.T.E',
+        description: 'Takes notes with JavaScript syntax highlighting!',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        start_url: './',
+        publicPath: './',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
       }),
       new InjectManifest({
-        template: './src-sw.js',
-        swDest: 'src-sw.js'
-      }),
-      new WebpackPwaManifest ({
-        name: "Just Another Text Editor",
-        short_name: 'J.A.T.E.',
-        description: 'Taking notes with JS',
-        inject: true,
-        fingerprints: false,
-        background_color: '#B8B8B8',
-        theme_color: "#B8B8B8",
-        start_url: "./",
-        publicPath: "./",
-        icons: [{
-          src: path.resolve('src/images/logo.png'),
-          sizes: [96,128,192],
-          destination: path.join('assets', 'icons')
-        }],
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
       }),
     ],
+
     module: {
       rules: [
         {
-          use: ['style-loader', 'css-loader'],
           test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.m?js$/,
@@ -55,8 +55,8 @@ module.exports = () => {
           use: {
             loader: 'babel-loader',
             options: {
-              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
               presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
             },
           },
         },

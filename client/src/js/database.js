@@ -1,5 +1,3 @@
-import { request } from 'express';
-import res from 'express/lib/response';
 import { openDB } from 'idb';
 
 const initdb = async () =>
@@ -14,25 +12,23 @@ const initdb = async () =>
     },
   });
 
-// TODO: Add logic to a method that accepts some content and adds it to the database
 export const putDb = async (content) => {
-  const db = await openDB('jate', 1);
-  const text = db.transaction('jate', 'readwrite');
-  const store = text.objectStore('jate');
+  const jateDb = await openDB('jate', 1);
+  const tx = jateDb.transaction('jate', 'readwrite');
+  const store = tx.objectStore('jate');
+  const request = store.put({ id: 1, jate: content });
   const result = await request;
-  const request = store.put({ id: 1 , jate: content });
-  console.log(result);
-  console.error('putDb not implemented');
-};
+  console.log('Data saved', result);
+}
 
-// TODO: Add logic for a method that gets all the content from the database
 export const getDb = async () => {
-  const db = await openDB('jate', 1);
-  const text = db.transaction('jate', 'readonly');
-  const store = text.objectStore('jate');
-  const result = await request;
+  const jateDb = await openDB('jate', 1);
+  const tx = jateDb.transaction('jate', 'readonly');
+  const store = tx.objectStore('jate');
   const request = store.getAll();
-  console.log(result);
-  console.error('getDb not implemented');
-};
+  const result = await request;
+  console.log('Result:', result);
+  return result;
+}
+
 initdb();
